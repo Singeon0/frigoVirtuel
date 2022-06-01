@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6CDEEE852847CDCC004E8B7E /* appPeremptionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEEE842847CDCC004E8B7E /* appPeremptionApp.swift */; };
+		6CDEEE872847CDCC004E8B7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEEE862847CDCC004E8B7E /* ContentView.swift */; };
+		6CDEEE892847CDCD004E8B7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDEEE882847CDCD004E8B7E /* Assets.xcassets */; };
+		6CDEEE8C2847CDCD004E8B7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDEEE8B2847CDCD004E8B7E /* Preview Assets.xcassets */; };
+		6CDEEE932847CE03004E8B7E /* Produit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEEE922847CE03004E8B7E /* Produit.swift */; };
+		6CDEEE962847CE2B004E8B7E /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = 6CDEEE952847CE2B004E8B7E /* CarBode */; };
+		6CDEEE992847CE5C004E8B7E /* ModalScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEEE972847CE5C004E8B7E /* ModalScannerView.swift */; };
+		6CDEEE9A2847CE5C004E8B7E /* NewProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEEE982847CE5C004E8B7E /* NewProduct.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6CDEEE812847CDCC004E8B7E /* appPeremption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appPeremption.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CDEEE842847CDCC004E8B7E /* appPeremptionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appPeremptionApp.swift; sourceTree = "<group>"; };
+		6CDEEE862847CDCC004E8B7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6CDEEE882847CDCD004E8B7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6CDEEE8B2847CDCD004E8B7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6CDEEE922847CE03004E8B7E /* Produit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Produit.swift; sourceTree = "<group>"; };
+		6CDEEE972847CE5C004E8B7E /* ModalScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalScannerView.swift; sourceTree = "<group>"; };
+		6CDEEE982847CE5C004E8B7E /* NewProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProduct.swift; sourceTree = "<group>"; };
+		6CDEEE9B2847CFA0004E8B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6CDEEE7E2847CDCC004E8B7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CDEEE962847CE2B004E8B7E /* CarBode in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6CDEEE782847CDCC004E8B7E = {
+			isa = PBXGroup;
+			children = (
+				6CDEEE832847CDCC004E8B7E /* appPeremption */,
+				6CDEEE822847CDCC004E8B7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6CDEEE822847CDCC004E8B7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6CDEEE812847CDCC004E8B7E /* appPeremption.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6CDEEE832847CDCC004E8B7E /* appPeremption */ = {
+			isa = PBXGroup;
+			children = (
+				6CDEEE9B2847CFA0004E8B7E /* Info.plist */,
+				6CDEEE842847CDCC004E8B7E /* appPeremptionApp.swift */,
+				6CDEEE862847CDCC004E8B7E /* ContentView.swift */,
+				6CDEEE922847CE03004E8B7E /* Produit.swift */,
+				6CDEEE972847CE5C004E8B7E /* ModalScannerView.swift */,
+				6CDEEE982847CE5C004E8B7E /* NewProduct.swift */,
+				6CDEEE882847CDCD004E8B7E /* Assets.xcassets */,
+				6CDEEE8A2847CDCD004E8B7E /* Preview Content */,
+			);
+			path = appPeremption;
+			sourceTree = "<group>";
+		};
+		6CDEEE8A2847CDCD004E8B7E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6CDEEE8B2847CDCD004E8B7E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6CDEEE802847CDCC004E8B7E /* appPeremption */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CDEEE8F2847CDCD004E8B7E /* Build configuration list for PBXNativeTarget "appPeremption" */;
+			buildPhases = (
+				6CDEEE7D2847CDCC004E8B7E /* Sources */,
+				6CDEEE7E2847CDCC004E8B7E /* Frameworks */,
+				6CDEEE7F2847CDCC004E8B7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = appPeremption;
+			packageProductDependencies = (
+				6CDEEE952847CE2B004E8B7E /* CarBode */,
+			);
+			productName = appPeremption;
+			productReference = 6CDEEE812847CDCC004E8B7E /* appPeremption.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6CDEEE792847CDCC004E8B7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					6CDEEE802847CDCC004E8B7E = {
+						CreatedOnToolsVersion = 13.4;
+					};
+				};
+			};
+			buildConfigurationList = 6CDEEE7C2847CDCC004E8B7E /* Build configuration list for PBXProject "appPeremption" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6CDEEE782847CDCC004E8B7E;
+			packageReferences = (
+				6CDEEE942847CE2B004E8B7E /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
+			);
+			productRefGroup = 6CDEEE822847CDCC004E8B7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6CDEEE802847CDCC004E8B7E /* appPeremption */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6CDEEE7F2847CDCC004E8B7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CDEEE8C2847CDCD004E8B7E /* Preview Assets.xcassets in Resources */,
+				6CDEEE892847CDCD004E8B7E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6CDEEE7D2847CDCC004E8B7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CDEEE872847CDCC004E8B7E /* ContentView.swift in Sources */,
+				6CDEEE932847CE03004E8B7E /* Produit.swift in Sources */,
+				6CDEEE852847CDCC004E8B7E /* appPeremptionApp.swift in Sources */,
+				6CDEEE9A2847CE5C004E8B7E /* NewProduct.swift in Sources */,
+				6CDEEE992847CE5C004E8B7E /* ModalScannerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6CDEEE8D2847CDCD004E8B7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6CDEEE8E2847CDCD004E8B7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6CDEEE902847CDCD004E8B7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"appPeremption/Preview Content\"";
+				DEVELOPMENT_TEAM = 4VUQ77ZYUT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appPeremption/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "projet-app-mobile.appPeremption";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6CDEEE912847CDCD004E8B7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"appPeremption/Preview Content\"";
+				DEVELOPMENT_TEAM = 4VUQ77ZYUT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = appPeremption/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "projet-app-mobile.appPeremption";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6CDEEE7C2847CDCC004E8B7E /* Build configuration list for PBXProject "appPeremption" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CDEEE8D2847CDCD004E8B7E /* Debug */,
+				6CDEEE8E2847CDCD004E8B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6CDEEE8F2847CDCD004E8B7E /* Build configuration list for PBXNativeTarget "appPeremption" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CDEEE902847CDCD004E8B7E /* Debug */,
+				6CDEEE912847CDCD004E8B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6CDEEE942847CE2B004E8B7E /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6CDEEE952847CE2B004E8B7E /* CarBode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CDEEE942847CE2B004E8B7E /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
+			productName = CarBode;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6CDEEE792847CDCC004E8B7E /* Project object */;
+}
