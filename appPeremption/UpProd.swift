@@ -1,33 +1,22 @@
 //
-//  newProduct.swift
-//  ExampleProject
+//  UpProd.swift
+//  appPeremption
 //
-//  Created by MacBook d'Arthur on 13/05/2022.
-//  Copyright © 2022 narongrit kanhanoi. All rights reserved.
+//  Created by MacBook d'Arthur on 02/06/2022.
 //
 
 import SwiftUI
 
-struct NewProduct: View {
-    @State var nom: String
-    @State var type = TypeProduits.fruits_legumes
+struct UpProd: View {
+    @Binding var codeBarVal: String
     @State var qtt = 1
     @State var peremp = Date()
-    @Binding var codeBarVal: String
     @Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer est cliquer"
-    
+
     var body: some View {
         NavigationView { // sans ça je ne peux pas cliquer sur les picker
             Form {
                 Section {
-                    TextField("Nom", text: $nom)
-                    
-                    Picker("Type", selection: $type) {
-                        ForEach (TypeProduits.allCases, id: \.self) { value in
-                            Text(value.rawValue)
-                                .tag(value)
-                        }
-                    }
                     
                     Picker("Quantité", selection: $qtt) {
                         ForEach(0 ..< 100) {
@@ -49,8 +38,13 @@ struct NewProduct: View {
                 
                 print(qtt)
                 
-                let newProd = Produit(id: Int(codeBarVal) ?? 0, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp)
-                produits.append(newProd)
+                let infos = getProdByCode(produits: produits, code: Int(codeBarVal) ?? 0)
+                var id = Int(codeBarVal) ?? 0
+                id += Int.random(in: 1..<1000)
+                print(id)
+                let upProd = Produit(id: id, nom: infos.nom, type: infos.type, quantite: Int(self.qtt) , peremp: self.peremp)
+                print(upProd)
+                produits.append(upProd)
                 
 //                do {
 //                    // Create JSON Encoder
@@ -77,10 +71,19 @@ struct NewProduct: View {
     }
 }
 
-//struct newProduct_Previews: PreviewProvider {
+func getProdByCode (produits: [Produit], code: Int) -> (nom: String, type: String) {
+    for prod in produits {
+        if prod.id == code {
+            return (prod.nom, prod.type)
+        }
+    }
+    return ("", "")
+}
+
+
+
+//struct UpProd_Previews: PreviewProvider {
 //    static var previews: some View {
-//        newProduct(nom: "Nom", codeBarVal: "Code")
-//            .padding()
+//        UpProd(codeBarVal: "codeBarVal")
 //    }
 //}
-

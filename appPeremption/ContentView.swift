@@ -34,8 +34,9 @@ struct ContentView: View {
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.black, lineWidth: 2.0))
                         VStack (alignment: .leading) {
-                            Text(prod.id).font(.headline)
-                            Text(String(prod.quantite)).font(.subheadline)
+                            Text(prod.nom).font(.headline)
+                            Text("Quantité : " + String(prod.quantite)).font(.subheadline)
+                            Text("Péremption : " + dateToString(date: prod.peremp)).font(.subheadline)
                         }
                     }.padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
                 }.navigationBarTitle(Text("Produits"))
@@ -70,9 +71,7 @@ struct ContentView: View {
     //                        print("Unable to Decode Notes (\(error))")
     //                    }
     //                }
-                    
-                    print(produits)
-                    
+                                    
                     self.showingScanner = true
                 }
                 .font(.system(.largeTitle))
@@ -98,6 +97,17 @@ struct ContentView: View {
         
         }
     }
+}
+
+func dateToString (date: Date) -> String {
+    // Create Date Formatter
+    let dateFormatter = DateFormatter()
+
+    // Set Date Format
+    dateFormatter.dateFormat = "YY/MM/dd"
+
+    // Convert Date to String
+    return (dateFormatter.string(from: date))
 }
 
 struct ContentView_Previews: PreviewProvider {

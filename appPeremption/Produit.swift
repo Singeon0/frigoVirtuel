@@ -8,10 +8,11 @@ public enum TypeProduits: String, CaseIterable, Identifiable {
 
 
 struct Produit: Codable, Identifiable {
-    var id: String
-    var cb: Int
+    var id: Int
+    var nom: String
     var type: String
     var quantite : Int
     var peremp = Date()
+    
 }
 

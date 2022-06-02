@@ -49,21 +49,27 @@ struct cameraFrame: Shape {
     }
 }
 
+
 struct ModalScannerView: View {
+    enum SelectedSheet:Int, Identifiable {
+        case newProd, upProd
+        var id:Int { rawValue }
+        
+    }
+    @State var selectedTarget:SelectedSheet? = nil
     @Binding var barcodeValue: String
     @State var openFirst: Bool
     @State var torchIsOn = false
-    @State var openNewProd = false
     @State var cameraPosition = AVCaptureDevice.Position.back
     //@Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer est cliquer"
 
     var body: some View {
         VStack {
             HStack {
-                Text("Scan de code bar")
-                    
-                    .font(.system(size: 30, weight: Font.Weight.bold))
-                    .foregroundColor(Color.blue)
+//                Text("Scan de code bar")
+//
+//                    .font(.system(size: 30, weight: Font.Weight.bold))
+//                    .foregroundColor(Color.blue)
                 
                 Button {
                     self.torchIsOn.toggle()
@@ -113,21 +119,36 @@ struct ModalScannerView: View {
                     codeBar.append(code)
                     defaults.set(codeBar, forKey: "codeBar")
                     print("pas dans la liste")
-                    self.openNewProd = true
+                    selectedTarget = .newProd
+                }
+                
+                else {
+                    selectedTarget = .upProd
                 }
                 
                 
                 
                 //presentationMode.wrappedValue.dismiss()
-            }
-            .sheet(isPresented: $openNewProd) {
-                NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
             } .padding()
                 .font(.system(size: 18, weight: Font.Weight.bold))
                 .foregroundColor(Color.white)
                 .background(Color.green)
                 .cornerRadius(.infinity)
-        }.padding(50) .background(Color.black)
+            
+            
+        } .sheet(item: $selectedTarget) { selectedTarget in
+            switch selectedTarget {
+             case .newProd:
+                NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
+            case .upProd:
+                UpProd(codeBarVal: $barcodeValue)
+            default:
+                EmptyView()
+            }
+            
+        }
+        .padding(50)
+        .background(Color.black)
     }
 }
 // ce qui va s'afficher dans la preview
@@ -137,3 +158,4 @@ struct ModalScannerView_Previews: PreviewProvider {
     }
 }
 
+// NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
