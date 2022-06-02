@@ -51,40 +51,39 @@ struct cameraFrame: Shape {
 
 
 struct ModalScannerView: View {
+    // permet de soit ouvrir la vu d'un nouveau produit ou d'un produit déjà référencé
     enum SelectedSheet:Int, Identifiable {
         case newProd, upProd
         var id:Int { rawValue }
         
     }
     @State var selectedTarget:SelectedSheet? = nil
-    @Binding var barcodeValue: String
+    @Binding var barcodeValue: String // Binding pour passer la variable dans les vues suivantes
     @State var openFirst: Bool
     @State var torchIsOn = false
     @State var cameraPosition = AVCaptureDevice.Position.back
-    //@Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer est cliquer"
 
     var body: some View {
         VStack {
             HStack {
-//                Text("Scan de code bar")
-//
-//                    .font(.system(size: 30, weight: Font.Weight.bold))
-//                    .foregroundColor(Color.blue)
-                
+                // Bouton pour allumer la lampe torche
                 Button {
                     self.torchIsOn.toggle()
                 } label: {
                     Image(systemName: "bolt.fill")
                         .renderingMode(.original)
-                        .foregroundColor(Color.white)
-                        .padding(12.0)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .padding()
+                    
                 }
                 
                 
             } .padding()
             
             
-            
+            // utilisation du package de scan de code barre
             CBScanner(
                 supportBarcode: .constant([.ean13]),
                 torchLightIsOn: $torchIsOn,
@@ -103,7 +102,7 @@ struct ModalScannerView: View {
                 //Draw Barcode corner
                 $0.draw(lineWidth: 1, lineColor: lineColor, fillColor: fillColor)
                 
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 400, maxHeight: 400, alignment: .topLeading)
+            }.frame(minWidth: 600, maxWidth: .infinity, minHeight: 400, maxHeight: 400, alignment: .topLeading)
 //                .overlay(cameraFrame() donne un cadre à la zone de caméra
 //                            .stroke(lineWidth: 5)
 //                            .frame(width: 500, height: 250)
@@ -115,14 +114,14 @@ struct ModalScannerView: View {
             Button("Enregistrer") {
                 self.openFirst = false
                 let code = Int(barcodeValue) ?? 0
-                if (!codeBar.contains(code)) {
+                if (!codeBar.contains(code)) { // si le code barre n'est pas déjà référencé
                     codeBar.append(code)
                     defaults.set(codeBar, forKey: "codeBar")
                     print("pas dans la liste")
                     selectedTarget = .newProd
                 }
                 
-                else {
+                else { // sinon ouvertue de la vue qui permet d'ajouter un produit avec une quantité et une date de péremption différente
                     selectedTarget = .upProd
                 }
                 
@@ -142,7 +141,7 @@ struct ModalScannerView: View {
                 NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
             case .upProd:
                 UpProd(codeBarVal: $barcodeValue)
-            default:
+            default: // au cas où il y a un problème je n'ouvre rien
                 EmptyView()
             }
             
@@ -157,5 +156,3 @@ struct ModalScannerView_Previews: PreviewProvider {
         ModalScannerView(barcodeValue: .constant("Valeur du code bar"), openFirst: false)
     }
 }
-
-// NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)

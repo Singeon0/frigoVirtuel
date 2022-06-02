@@ -1,20 +1,5 @@
 import SwiftUI
 
-// variables global
- // liste des codes bars référencés
-// dictionnaire de produits avec leur code bar comme clé
-
-
-let defaults = UserDefaults.standard
-var codeBar: [Int] = []
-var produits: [Produit] = []
-
-//defaults.set(codeBar, forKey: "codeBar")
-//defaults.set(produits, forKey: "produits")
-
-
-     
-
 struct ContentView: View {
     @State var showingScanner = false
     @State var barcodeValue = ""
@@ -22,7 +7,7 @@ struct ContentView: View {
 
     var body: some View {
 
-        
+        // affichage liste des produits
         NavigationView {
             List {
                 //Text("Users").font(.largeTitle)
@@ -44,34 +29,12 @@ struct ContentView: View {
         }
         
         VStack{
-            
-//            List {
-//                ForEach(produits, id : \.id) { prod in
-//                     Text(prod.id)
-//                }
-//            }
-            
+                        
         HStack {
                 Spacer()
                 
                 Button("+") {
-                    print(produits)
-                    
-                    //codeBar = defaults.object(forKey: "codeBar") as? [Int] ?? [Int]()
-                    
-    //                if let data = UserDefaults.standard.data(forKey: "produits") {
-    //                    do {
-    //                        // Create JSON Decoder
-    //                        let decoder = JSONDecoder()
-    //
-    //                        // Decode Note
-    //                        produits = try decoder.decode([Produit].self, from: data)
-    //
-    //                    } catch {
-    //                        print("Unable to Decode Notes (\(error))")
-    //                    }
-    //                }
-                                    
+                    print(produits) // ne s'exécute pas si l'iphone n'est pas connecté à l'IDE
                     self.showingScanner = true
                 }
                 .font(.system(.largeTitle))
@@ -85,20 +48,16 @@ struct ContentView: View {
                                 radius: 3,
                                 x: 3,
                                 y: 3)
-                
+                // la vu qui sera ouverte après avoir cliqué sur "+"
                 .sheet(isPresented: self.$showingScanner) {
                     ModalScannerView(barcodeValue: self.$barcodeValue, openFirst: self.showingScanner, torchIsOn: false)
                 }
-                //style du bouton
-                
-                
             }
-            
-        
         }
     }
 }
 
+// permet l'affichage d'une date au format string, nécessairre pour l'affichage des produits
 func dateToString (date: Date) -> String {
     // Create Date Formatter
     let dateFormatter = DateFormatter()

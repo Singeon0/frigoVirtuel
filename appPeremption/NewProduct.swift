@@ -1,11 +1,3 @@
-//
-//  newProduct.swift
-//  ExampleProject
-//
-//  Created by MacBook d'Arthur on 13/05/2022.
-//  Copyright © 2022 narongrit kanhanoi. All rights reserved.
-//
-
 import SwiftUI
 
 struct NewProduct: View {
@@ -14,10 +6,11 @@ struct NewProduct: View {
     @State var qtt = 1
     @State var peremp = Date()
     @Binding var codeBarVal: String
-    @Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer est cliquer"
+    @Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer ce nouveau produit" est cliquer
     
     var body: some View {
         NavigationView { // sans ça je ne peux pas cliquer sur les picker
+            // l'utilisateur va rentrer les infos de son nouveau produit
             Form {
                 Section {
                     TextField("Nom", text: $nom)
@@ -49,22 +42,23 @@ struct NewProduct: View {
                 
                 print(qtt)
                 
-                let newProd = Produit(id: Int(codeBarVal) ?? 0, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp)
-                produits.append(newProd)
+                let newProd = Produit(id: Int(codeBarVal) ?? 0, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp) // création d'un nouvel objet produit
+                produits.append(newProd) // ajout du nouveau produit dans la liste des produits
                 
-//                do {
-//                    // Create JSON Encoder
-//                    let encoder = JSONEncoder()
-//
-//                    // Encode Note
-//                    let data = try encoder.encode(produits)
-//
-//                    // Write/Set Data
-//                    UserDefaults.standard.set(data, forKey: "produits")
-//
-//                } catch {
-//                    print("Unable to Encode Array of Notes (\(error))")
-//                }
+                // enregistrement dans le UserDefault du nouveau produit
+                do {
+                    // Create JSON Encoder
+                    let encoder = JSONEncoder()
+
+                    // Encode Note
+                    let data = try encoder.encode(produits)
+
+                    // Write/Set Data
+                    UserDefaults.standard.set(data, forKey: "produits")
+
+                } catch {
+                    print("Unable to Encode Array of Notes (\(error))")
+                }
                                 
                 presentationMode.wrappedValue.dismiss()
                 

@@ -40,25 +40,25 @@ struct UpProd: View {
                 
                 let infos = getProdByCode(produits: produits, code: Int(codeBarVal) ?? 0)
                 var id = Int(codeBarVal) ?? 0
-                id += Int.random(in: 1..<1000)
+                id += Int.random(in: 1..<1000) // je rajoute un nombre aléatoire au code barre du produit déjà existant afin de ne pas avoir d'id en doublon !
                 print(id)
                 let upProd = Produit(id: id, nom: infos.nom, type: infos.type, quantite: Int(self.qtt) , peremp: self.peremp)
                 print(upProd)
                 produits.append(upProd)
                 
-//                do {
-//                    // Create JSON Encoder
-//                    let encoder = JSONEncoder()
-//
-//                    // Encode Note
-//                    let data = try encoder.encode(produits)
-//
-//                    // Write/Set Data
-//                    UserDefaults.standard.set(data, forKey: "produits")
-//
-//                } catch {
-//                    print("Unable to Encode Array of Notes (\(error))")
-//                }
+                do {
+                    // Create JSON Encoder
+                    let encoder = JSONEncoder()
+
+                    // Encode Note
+                    let data = try encoder.encode(produits)
+
+                    // Write/Set Data
+                    UserDefaults.standard.set(data, forKey: "produits")
+
+                } catch {
+                    print("Unable to Encode Array of Notes (\(error))")
+                }
                                 
                 presentationMode.wrappedValue.dismiss()
                 
@@ -71,6 +71,7 @@ struct UpProd: View {
     }
 }
 
+// return le nom et le type de produit avec le même code barre
 func getProdByCode (produits: [Produit], code: Int) -> (nom: String, type: String) {
     for prod in produits {
         if prod.id == code {

@@ -1,5 +1,6 @@
 import Foundation
 
+// énumérations pour toutes les catégories de produits
 public enum TypeProduits: String, CaseIterable, Identifiable {
     case viande = "Viande", fruits_legumes = "Fruits et Légumes", poisson = "Poisson", epicerie_salee = "Épicerie Salée", epicerie_sucree = "Épicerie Sucrée", boissons = "Boissons", prod_frais = "Produits Frais"
     
@@ -8,11 +9,10 @@ public enum TypeProduits: String, CaseIterable, Identifiable {
 
 
 struct Produit: Codable, Identifiable {
-    var id: Int
+    var id: Int // le code barre sera identifié comme l'id du produit
     var nom: String
     var type: String
     var quantite : Int
     var peremp = Date()
-    
 }
 
