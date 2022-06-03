@@ -113,10 +113,9 @@ struct ModalScannerView: View {
             
             Button("Enregistrer") {
                 self.openFirst = false
-                let code = Int(barcodeValue) ?? 0
+                //let code = Int(barcodeValue) ?? 0 /// DÉCOMMENTER POUR LE FONCTIONNEMENT SUR IPHONE
+                let code = Int.random(in: 1..<1000) // permet d'utiliser le simulateur
                 if (!codeBar.contains(code)) { // si le code barre n'est pas déjà référencé
-                    codeBar.append(code)
-                    defaults.set(codeBar, forKey: "codeBar")
                     print("pas dans la liste")
                     selectedTarget = .newProd
                 }
@@ -141,8 +140,6 @@ struct ModalScannerView: View {
                 NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
             case .upProd:
                 UpProd(codeBarVal: $barcodeValue)
-            default: // au cas où il y a un problème je n'ouvre rien
-                EmptyView()
             }
             
         }

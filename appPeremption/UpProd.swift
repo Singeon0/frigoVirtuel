@@ -46,19 +46,19 @@ struct UpProd: View {
                 print(upProd)
                 produits.append(upProd)
                 
-                do {
-                    // Create JSON Encoder
-                    let encoder = JSONEncoder()
-
-                    // Encode Note
-                    let data = try encoder.encode(produits)
-
-                    // Write/Set Data
-                    UserDefaults.standard.set(data, forKey: "produits")
-
-                } catch {
-                    print("Unable to Encode Array of Notes (\(error))")
-                }
+//                do {
+//                    // Create JSON Encoder
+//                    let encoder = JSONEncoder()
+//
+//                    // Encode Note
+//                    let data = try encoder.encode(produits)
+//
+//                    // Write/Set Data
+//                    UserDefaults.standard.set(data, forKey: "produits")
+//
+//                } catch {
+//                    print("Unable to Encode Array of Notes (\(error))")
+//                }
                                 
                 presentationMode.wrappedValue.dismiss()
                 

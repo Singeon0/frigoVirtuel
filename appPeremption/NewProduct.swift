@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct NewProduct: View {
     @State var nom: String
@@ -40,25 +41,41 @@ struct NewProduct: View {
         VStack {
             Button("Enregistrer ce nouveau produit") {
                 
-                print(qtt)
-                
-                let newProd = Produit(id: Int(codeBarVal) ?? 0, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp) // création d'un nouvel objet produit
+                let code = Int(codeBarVal) ?? 0
+                codeBar.append(code)
+//                defaults.set(codeBar, forKey: "codeBar") //ajout du code barre dans la liste des codes référencés
+                let newProd = Produit(id: code, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp) // création d'un nouvel objet produit
                 produits.append(newProd) // ajout du nouveau produit dans la liste des produits
                 
                 // enregistrement dans le UserDefault du nouveau produit
-                do {
-                    // Create JSON Encoder
-                    let encoder = JSONEncoder()
+//                do {
+//                    // Create JSON Encoder
+//                    let encoder = JSONEncoder()
+//
+//                    // Encode Note
+//                    let data = try encoder.encode(produits)
+//
+//                    // Write/Set Data
+//                    UserDefaults.standard.set(data, forKey: "produits")
+//
+//                } catch {
+//                    print("Unable to Encode Array of Notes (\(error))")
+//                }
+                
+                ///Création d'une notification 1 jour avant la péremption du produit
+                let content = UNMutableNotificationContent()
+                content.title = "Produit sur le point de périmer !"
+                content.body = "Faites vite son temps est compté"
+                content.sound = UNNotificationSound.default
 
-                    // Encode Note
-                    let data = try encoder.encode(produits)
+                // peremp.timeIntervalSinceNow est le nombre de seconde entre maintenant et la veille du jour de péremption
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: peremp.timeIntervalSinceNow - 24*3600, repeats: false)
 
-                    // Write/Set Data
-                    UserDefaults.standard.set(data, forKey: "produits")
+                // choose a random identifier
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
-                } catch {
-                    print("Unable to Encode Array of Notes (\(error))")
-                }
+                // add our notification request
+                UNUserNotificationCenter.current().add(request)
                                 
                 presentationMode.wrappedValue.dismiss()
                 
