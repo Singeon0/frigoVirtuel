@@ -6,7 +6,7 @@ struct NewProduct: View {
     @State var type = TypeProduits.fruits_legumes
     @State var qtt = 1
     @State var peremp = Date()
-    @Binding var codeBarVal: String
+    @Binding var code: Int
     @Environment(\.presentationMode) var presentationMode // permet de fermer la fenêtre quand le bouton "Enregistrer ce nouveau produit" est cliquer
     
     var body: some View {
@@ -21,13 +21,13 @@ struct NewProduct: View {
                             Text(value.rawValue)
                                 .tag(value)
                         }
-                    }
+                    }.pickerStyle(.menu)
                     
                     Picker("Quantité", selection: $qtt) {
                         ForEach(0 ..< 100) {
-                            Text("\($0)")
+                            Text("Quantité : \($0)")
                         }
-                    }
+                    }.pickerStyle(.menu)
                         
                     DatePicker(
                             "Date de péremption",
@@ -41,35 +41,51 @@ struct NewProduct: View {
         VStack {
             Button("Enregistrer ce nouveau produit") {
                 
-                let code = Int(codeBarVal) ?? 0
-                codeBar.append(code)
-//                defaults.set(codeBar, forKey: "codeBar") //ajout du code barre dans la liste des codes référencés
                 let newProd = Produit(id: code, nom: self.nom, type: self.type.rawValue, quantite: Int(self.qtt) , peremp: self.peremp) // création d'un nouvel objet produit
-                produits.append(newProd) // ajout du nouveau produit dans la liste des produits
+                codeBar.append(newProd) // ajout d'un produit dans l'historique
+                produits.append(newProd) // ajout du nouveau produit dans la liste des produits en cours
+                print(codeBar)
                 
-                // enregistrement dans le UserDefault du nouveau produit
-//                do {
-//                    // Create JSON Encoder
-//                    let encoder = JSONEncoder()
-//
-//                    // Encode Note
-//                    let data = try encoder.encode(produits)
-//
-//                    // Write/Set Data
-//                    UserDefaults.standard.set(data, forKey: "produits")
-//
-//                } catch {
-//                    print("Unable to Encode Array of Notes (\(error))")
-//                }
+                 //enregistrement dans le UserDefault du nouveau produit
+                do {
+                    // Create JSON Encoder
+                    let encoder = JSONEncoder()
+
+                    // Encode Note
+                    let data = try encoder.encode(produits)
+
+                    // Write/Set Data
+                    UserDefaults.standard.set(data, forKey: "produits")
+
+                } catch {
+                    print("Unable to Encode Array of Notes (\(error))")
+                }
+
+                
+                 //enregistrement dans le UserDefault du nouveau code
+                do {
+                    // Create JSON Encoder
+                    let encoder = JSONEncoder()
+
+                    // Encode Note
+                    let data = try encoder.encode(codeBar)
+
+                    // Write/Set Data
+                    UserDefaults.standard.set(data, forKey: "codeBar")
+
+                } catch {
+                    print("Unable to Encode Array of Code (\(error))")
+                }
+
                 
                 ///Création d'une notification 1 jour avant la péremption du produit
                 let content = UNMutableNotificationContent()
-                content.title = "Produit sur le point de périmer !"
+                content.title = "\(self.nom) est sur le point de périmer !"
                 content.body = "Faites vite son temps est compté"
                 content.sound = UNNotificationSound.default
 
                 // peremp.timeIntervalSinceNow est le nombre de seconde entre maintenant et la veille du jour de péremption
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: peremp.timeIntervalSinceNow - 24*3600, repeats: false)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: abs(peremp.timeIntervalSinceNow - 24*3600), repeats: false)
 
                 // choose a random identifier
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)

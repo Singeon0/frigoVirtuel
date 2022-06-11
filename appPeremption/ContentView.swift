@@ -7,9 +7,9 @@ struct Types: Identifiable, Hashable {
 }
 
 private var types = [
-    Types(name: "Viande"),
     Types(name: "Fruits et Légumes"),
     Types(name: "Poisson"),
+    Types(name: "Viande"),
     Types(name: "Épicerie Salée"),
     Types(name: "Épicerie Sucrée"),
     Types(name: "Boissons"),
@@ -19,10 +19,12 @@ private var types = [
 struct ContentView: View {
     @State var showingScanner = false
     @State var barcodeValue = ""
+    @State var isPopup = false
 
     var body: some View {
-
+        
         // affichage liste des produits
+        VStack {
         NavigationView {
             List {
                 //Text("Users").font(.largeTitle)
@@ -41,19 +43,42 @@ struct ContentView: View {
                                     Text("Péremption : " + dateToString(date: prod.peremp)).font(.subheadline)
                                 }
                             }.padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
+                                .onLongPressGesture(minimumDuration: 1) {
+                                    print("sup")
+                                    produits = delProd(produits: produits, produit: prod)
+                                    //enregistrement dans le UserDefault du nouveau produit
+                                   do {
+                                       // Create JSON Encoder
+                                       let encoder = JSONEncoder()
+
+                                       // Encode Note
+                                       let data = try encoder.encode(produits)
+
+                                       // Write/Set Data
+                                       UserDefaults.standard.set(data, forKey: "produits")
+
+                                   } catch {
+                                       print("Unable to Encode Array of Notes (\(error))")
+                                   }
+                                }
+                                .listRowBackground(yellowPeremp(date: prod.peremp) ? Color.white : Color.yellow)
                         }
                     }.navigationBarTitle(Text("Produits"))
+                        .onTapGesture(count: 1) { isPopup = true }
+                        .alert(isPresented: $isPopup) {
+                            Alert(title: Text("Gaspillage alimentaire"), message: Text("En France, les pertes et gaspillages alimentaires représentent 10 millions de tonnes de produits par an.\n \n Ce gaspillage représente un prélèvement inutile de ressources naturelles, telles que les terres cultivables et l’eau, et des émissions de gaz à effet de serre qui pourraient être évitées.\n \n Ce sont également des déchets qui pourraient être évités qui n’auraient donc pas à être traités et n’engendreraient pas les coûts de gestion afférents. \n \n Toutes les étapes de la chaîne alimentaire, production, transformation, distribution et consommation, participent aux pertes et gaspillages alimentaires."), dismissButton: .default(Text("Fermer")))
+                        }
                 }
             }
         }
         
-        VStack{
-                        
+        VStack {
+
         HStack {
                 Spacer()
-                
+
                 Button("+") {
-                    
+
                     // demande d'autorisation à l'utilisateur d'accepter les notifications
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                         if success {
@@ -62,8 +87,7 @@ struct ContentView: View {
                             print(error.localizedDescription)
                         }
                     }
-                    
-                    
+
                     print(produits) // ne s'exécute pas si l'iphone n'est pas connecté à l'IDE
                     self.showingScanner = true
                 }
@@ -80,10 +104,11 @@ struct ContentView: View {
                                 y: 3)
                 // la vu qui sera ouverte après avoir cliqué sur "+"
                 .sheet(isPresented: self.$showingScanner) {
-                    ModalScannerView(barcodeValue: self.$barcodeValue, openFirst: self.showingScanner, torchIsOn: false)
+                    ModalScannerView(barcodeValue: "", openFirst: self.showingScanner, torchIsOn: false, code: 10)
                 }
             }
         }
+    }     //ICI
     }
 }
 
@@ -97,6 +122,25 @@ func dateToString (date: Date) -> String {
 
     // Convert Date to String
     return (dateFormatter.string(from: date))
+}
+
+func yellowPeremp(date: Date) -> Bool {
+    //cette ftc retourne True si le produit périme dans 3 jours ou moins
+    let nextDate = Date(timeIntervalSinceNow: 3600*24*3)
+    //print("nextDate : \(date>=nextDate)")
+    return (date>=nextDate)
+    
+}
+
+func delProd(produits: [Produit], produit: Produit) -> [Produit] {
+    print("le produit à supprimer = \(produit)")
+    var up: [Produit] = []
+    for prod in produits {
+        if !(prod.id == produit.id && prod.nom == produit.nom && prod.peremp == produit.peremp && prod.quantite == produit.quantite) {
+            up.append(prod)
+        }
+    }
+    return up
 }
 
 struct ContentView_Previews: PreviewProvider {

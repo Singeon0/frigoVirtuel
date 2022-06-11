@@ -58,10 +58,11 @@ struct ModalScannerView: View {
         
     }
     @State var selectedTarget:SelectedSheet? = nil
-    @Binding var barcodeValue: String // Binding pour passer la variable dans les vues suivantes
+    @State var barcodeValue: String // Binding pour passer la variable dans les vues suivantes
     @State var openFirst: Bool
     @State var torchIsOn = false
     @State var cameraPosition = AVCaptureDevice.Position.back
+    @State var code: Int
 
     var body: some View {
         VStack {
@@ -90,12 +91,12 @@ struct ModalScannerView: View {
                 cameraPosition: $cameraPosition,
                 mockBarCode: .constant(BarcodeData(value:"My Test Data", type: .qr))
             ){
-                //print("BarCodeType =",$0.type.rawValue, "Value =",$0.value)
+                ////print("BarCodeType =",$0.type.rawValue, "Value =",$0.value)
                 barcodeValue = $0.value
             }
             onDraw: {
-                //print("Preview View Size = \($0.cameraPreviewView.bounds)")
-                //print("Barcode Corners = \($0.corners)")
+                ////print("Preview View Size = \($0.cameraPreviewView.bounds)")
+                ////print("Barcode Corners = \($0.corners)")
                 
                 let lineColor = UIColor.green
                 let fillColor = UIColor(red: 0, green: 1, blue: 0.2, alpha: 0.4)
@@ -113,14 +114,18 @@ struct ModalScannerView: View {
             
             Button("Enregistrer") {
                 self.openFirst = false
-                //let code = Int(barcodeValue) ?? 0 /// DÉCOMMENTER POUR LE FONCTIONNEMENT SUR IPHONE
-                let code = Int.random(in: 1..<1000) // permet d'utiliser le simulateur
-                if (!codeBar.contains(code)) { // si le code barre n'est pas déjà référencé
-                    print("pas dans la liste")
+                code = Int(barcodeValue) ?? 0 /// DÉCOMMENTER POUR LE FONCTIONNEMENT SUR IPHONE
+                //code = Int.random(in: 1..<1000) // permet d'utiliser le simulateur
+                barcodeValue = "0" // réinitialisation du scan du code bar, permet de ne pas savoir cliquer sur "Enregistrer" et d'avoir en mémoire le code scanner précédemment
+                //print("Code : \(codeBar)")
+                //print("Code bar: \(code)")
+                if (!isRef(codeBar: codeBar, code: code) && code != 0) { // si le code barre n'est pas déjà référencé
+                    //print("pas dans la liste")
                     selectedTarget = .newProd
                 }
                 
-                else { // sinon ouvertue de la vue qui permet d'ajouter un produit avec une quantité et une date de péremption différente
+                else if (isRef(codeBar: codeBar, code: code) && code != 0)  { // sinon ouvertue de la vue qui permet d'ajouter un produit avec une quantité et une date de péremption différente
+                    //print("upProd \(codeBar)")
                     selectedTarget = .upProd
                 }
                 
@@ -137,9 +142,9 @@ struct ModalScannerView: View {
         } .sheet(item: $selectedTarget) { selectedTarget in
             switch selectedTarget {
              case .newProd:
-                NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), codeBarVal: $barcodeValue)
+                NewProduct(nom: "", type: TypeProduits(rawValue: "") ?? TypeProduits.viande, qtt: 1, peremp: Date(), code: $code)
             case .upProd:
-                UpProd(codeBarVal: $barcodeValue)
+                UpProd(code: $code)
             }
             
         }
@@ -147,9 +152,22 @@ struct ModalScannerView: View {
         .background(Color.black)
     }
 }
+
+func isRef (codeBar: [Produit], code: Int) -> Bool {
+    var isRef = false
+    for ele in codeBar {
+        if ele.id == code {
+            isRef = true
+            return isRef
+        }
+    }
+    return isRef
+}
+
+
 // ce qui va s'afficher dans la preview
 struct ModalScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalScannerView(barcodeValue: .constant("Valeur du code bar"), openFirst: false)
+        ModalScannerView(barcodeValue: "Valeur du code bar", openFirst: false, code: 10)
     }
 }
