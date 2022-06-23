@@ -1,9 +1,5 @@
 import SwiftUI
 
-///TODO :
-///Supprimer les produits périmés -> changer l'id d'un upProd par le vrai id
-
-
 // Variables globales
 let defaults = UserDefaults.standard // Endroits où seront enregistrées les données
 var codeBar: [Produit] = [] // dans cette liste seront inclus les produits qui été scanné, c'est en quelques sorte un historique
@@ -39,8 +35,8 @@ struct appPeremptionApp: App {
                 print("Unable to Decode Code (\(error))")
             }
         }
-        //UserDefaults.standard.removeObject(forKey: "codeBar") // permet de supprimer les variables enregitrer
-        //UserDefaults.standard.removeObject(forKey: "produits")
+//        UserDefaults.standard.removeObject(forKey: "codeBar") // permet de supprimer les variables enregitrer
+//        UserDefaults.standard.removeObject(forKey: "produits")
         produits = delPeremp(produits: produits)
         print("codeBar: \(codeBar)")
         print("produits: \(produits)")
@@ -58,8 +54,10 @@ func delPeremp(produits: [Produit]) -> [Produit] { // cette fonction me retourne
     var up: [Produit] = []
     for prod in produits {
         if prod.peremp >= Date() {
+            print("toDel: \(prod)\n")
             up.append(prod)
         }
     }
+    print("Update: \(up)\n")
     return up
 }

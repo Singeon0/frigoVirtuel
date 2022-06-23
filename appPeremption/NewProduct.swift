@@ -62,7 +62,7 @@ struct NewProduct: View {
                 }
 
                 
-                 //enregistrement dans le UserDefault du nouveau code
+                 //Ajout d'un produit dans l'historique
                 do {
                     // Create JSON Encoder
                     let encoder = JSONEncoder()

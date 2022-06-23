@@ -1,11 +1,3 @@
-//
-//  ModalScannerView.swift
-//  ExampleProject
-//
-//  Created by narongrit kanhanoi on 7/1/2563 BE.
-//  Copyright © 2563 narongrit kanhanoi. All rights reserved.
-//
-
 import SwiftUI
 import CarBode
 import AVFoundation
@@ -115,12 +107,10 @@ struct ModalScannerView: View {
             Button("Enregistrer") {
                 self.openFirst = false
                 code = Int(barcodeValue) ?? 0 /// DÉCOMMENTER POUR LE FONCTIONNEMENT SUR IPHONE
-                //code = Int.random(in: 1..<1000) // permet d'utiliser le simulateur
+                //code = Int.random(in: 1..<1000) // permet d'utiliser le simulateur, génère un code-barre aléatoire
                 barcodeValue = "0" // réinitialisation du scan du code bar, permet de ne pas savoir cliquer sur "Enregistrer" et d'avoir en mémoire le code scanner précédemment
-                //print("Code : \(codeBar)")
-                //print("Code bar: \(code)")
                 if (!isRef(codeBar: codeBar, code: code) && code != 0) { // si le code barre n'est pas déjà référencé
-                    //print("pas dans la liste")
+                    //print("Pas dans la liste")
                     selectedTarget = .newProd
                 }
                 

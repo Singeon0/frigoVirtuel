@@ -1,10 +1,3 @@
-//
-//  UpProd.swift
-//  appPeremption
-//
-//  Created by MacBook d'Arthur on 02/06/2022.
-//
-
 import SwiftUI
 
 struct UpProd: View {
@@ -56,8 +49,23 @@ struct UpProd: View {
                     print("Unable to Encode Array of Notes (\(error))")
                 }
                                 
+                ///Création d'une notification 1 jour avant la péremption du produit
+                let content = UNMutableNotificationContent()
+                content.title = "\(infos.nom) est sur le point de périmer !"
+                content.body = "Faites vite son temps est compté"
+                content.sound = UNNotificationSound.default
+
+                // peremp.timeIntervalSinceNow est le nombre de seconde entre maintenant et la veille du jour de péremption
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: abs(peremp.timeIntervalSinceNow - 24*3600), repeats: false)
+
+                // choose a random identifier
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                // add our notification request
+                UNUserNotificationCenter.current().add(request)
+                                
                 presentationMode.wrappedValue.dismiss()
-                
+                                
             }.padding()
                 .font(.system(size: 18, weight: Font.Weight.bold))
                 .foregroundColor(Color.white)
@@ -74,7 +82,7 @@ func getProdByCode (codeBar: [Produit], code: Int) -> (nom: String, type: String
             return (prod.nom, prod.type)
         }
     }
-    return ("", "")
+    return ("", "") // si aucun produit n'est trouvé on ne renvoie rien (sinon erreur du compilateur)
 }
 
 
